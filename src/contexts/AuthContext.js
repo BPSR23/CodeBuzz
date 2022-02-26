@@ -1,77 +1,79 @@
-import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { auth } from '../utils/init-firebase'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  onAuthStateChanged,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+  confirmPasswordReset,
+} from 'firebase/auth'
 
-const AuthContext = React.createContext();
+const AuthContext = createContext({
+  currentUser: null,
+  signInWithGoogle: () => Promise,
+  login: () => Promise,
+  register: () => Promise,
+  logout: () => Promise,
+  forgotPassword: () => Promise,
+  resetPassword: () => Promise,
+})
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+export const useAuth = () => useContext(AuthContext)
 
-export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
-  const [loading, setLoading] = useState(true);
+export default function AuthContextProvider({ children }) {
+  const [currentUser, setCurrentUser] = useState(null)
 
-  function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
-  }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      setCurrentUser(user ? user : null)
+    })
+    return () => {
+      unsubscribe()
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log('The user is', currentUser)
+  }, [currentUser])
 
   function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
+    return signInWithEmailAndPassword(auth, email, password)
+  }
+
+  function register(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password)
+  }
+
+  function forgotPassword(email) {
+    return sendPasswordResetEmail(auth, email, {
+      url: `http://localhost:3000/login`,
+    })
+  }
+
+  function resetPassword(oobCode, newPassword) {
+    return confirmPasswordReset(auth, oobCode, newPassword)
   }
 
   function logout() {
-    return auth.signOut();
+    return signOut(auth)
   }
 
-  function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email);
+  function signInWithGoogle() {
+    const provider = new GoogleAuthProvider()
+    return signInWithPopup(auth, provider)
   }
-
-  function updateName(name) {
-    return currentUser.updateName(name);
-  }
-
-  function updateDob(dob) {
-    return currentUser.updateDob(dob);
-  }
-
-  function updateEmail(email) {
-    return currentUser.updateEmail(email);
-  }
-
-  function updatePassword(password) {
-    return currentUser.updatePassword(password);
-  }
-
-  function updateAddress(address) {
-    return currentUser.updateAddress(address);
-  }
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
-
-    return unsubscribe;
-  }, []);
 
   const value = {
     currentUser,
+    signInWithGoogle,
     login,
-    signup,
+    register,
     logout,
+    forgotPassword,
     resetPassword,
-    updateName,
-    updateDob,
-    updateEmail,
-    updatePassword,
-    updateAddress,
-  };
-
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+  }
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
