@@ -33,6 +33,7 @@ export function Navbar() {
         <Spacer />
         {!currentUser && <Navlink to='/login' name='Login' />}
         {!currentUser && <Navlink to='/register' name='Register' />}
+        {!currentUser && <Navlink to='/userid' name='userid' />}
         {currentUser && <Navlink to='/profile' name='Profile' />}
         {currentUser && (
           <Navlink

@@ -16,10 +16,13 @@ import { Card } from '../components/Card'
 import DividerWithText from '../components/DividerWithText'
 import { Layout } from '../components/Layout'
 import { useAuth } from '../contexts/AuthContext'
+// import { collection, addDoc } from "firebase/firestore";
+// import { firestore } from "../utils/init-firebase";
 
 export default function Registerpage() {
   const history = useHistory()
   const { signInWithGoogle, register } = useAuth()
+  // const nameRef = useRef();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -32,14 +35,33 @@ export default function Registerpage() {
       mounted.current = false
     }
   }, [])
-
+  // async function registeruser(){
+  //   console.log("er")
+  //   try {
+  //     const docRef = await addDoc(collection(firestore, "UserData"), {
+  //       name: "Demo",
+  //      });
+  //     console.log("Document written with ID: ", docRef.id);
+  //   } catch (e) {
+  //     console.error("Error adding document: ", e);
+  //   }
+  // }
   return (
     <Layout>
       <Heading textAlign='center' my={12}>
         Register
       </Heading>
+{/* <Button
+title='DEMO CLICK'
+type='submit'
+colorScheme='pink'
+size='lg'
+fontSize='md'
+onClick={registeruser}
+/> */}
       <Card maxW='md' mx='auto' mt={4}>
         <chakra.form
+          // onSubmit={async e => {registeruser()
           onSubmit={async e => {
             e.preventDefault()
             if (!email || !password) {
@@ -92,12 +114,26 @@ export default function Registerpage() {
                 onChange={e => setPassword(e.target.value)}
               />
             </FormControl>
+            {/* <FormControl id='username'>
+              <FormLabel>Username</FormLabel>
+              <Input
+                name='username'
+                type='username'
+                autoComplete='username'
+                required
+                value={username}
+              />
+            </FormControl> */}
             <Button
               type='submit'
               colorScheme='pink'
               size='lg'
               fontSize='md'
               isLoading={isSubmitting}
+              // onClick={registeruser}
+              // onClick={()=>{
+              //   console.log("HERER")
+              // }}
             >
               Sign up
             </Button>

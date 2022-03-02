@@ -15,6 +15,7 @@ import Profilepage from '../pages/Profilepage'
 import Registerpage from '../pages/Registerpage'
 import ResetPasswordPage from '../pages/ResetPasswordPage'
 import TestPage from '../pages/TestPage'
+import userid from '../pages/userid'
 
 export default function AppRouter(props) {
   return (
@@ -24,6 +25,7 @@ export default function AppRouter(props) {
           <Route exact path='/' component={Homepage} />
           <ProtectedRoute exact path='/login' component={Loginpage} />
           <ProtectedRoute exact path='/register' component={Registerpage} />
+          <ProtectedRoute exact path='/userid' component={userid} />
           <ProtectedRoute exact path='/profile' component={Profilepage} />
           <ProtectedRoute exact path='/test' component={TestPage} />
           <ProtectedRoute
@@ -54,6 +56,7 @@ function ProtectedRoute(props) {
     path === '/login' ||
     path === '/register' ||
     path === '/forgot-password' ||
+    path === '/userid' ||
     path === '/reset-password'
   ) {
     return currentUser ? (
