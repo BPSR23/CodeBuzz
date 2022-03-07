@@ -26,8 +26,9 @@ const DashboardV1_1 = () => {
         maxW="container.xl"
         color="tomato"
         width="150vh"
-        height="100%"
-        pt={10}
+        height="120vh"
+        pt={5}
+        pb={10}
         pr={0}
         pl={0}
       >
