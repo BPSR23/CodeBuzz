@@ -10,22 +10,27 @@ import { useAuth } from '../contexts/AuthContext'
 import ForgotPasswordPage from '../pages/ForgotPasswordPage'
 import Homepage from '../pages/Homepage'
 import Loginpage from '../pages/Loginpage'
+import { Layout } from "../components/Layout";
 import NotfoundPage from '../pages/NotfoundPage'
 import Profilepage from '../pages/Profilepage'
 import Registerpage from '../pages/Registerpage'
 import ResetPasswordPage from '../pages/ResetPasswordPage'
 import TestPage from '../pages/TestPage'
+import DashboardV1_1  from './DashboardV1_1'
+import DetailedProfile from '../pages/DetailedProfile'
 
 export default function AppRouter(props) {
   return (
     <>
       <Router>
+        <Layout />
         <Switch>
           <Route exact path='/' component={Homepage} />
           <ProtectedRoute exact path='/login' component={Loginpage} />
           <ProtectedRoute exact path='/register' component={Registerpage} />
-          <ProtectedRoute exact path='/profile' component={Profilepage} />
-          <ProtectedRoute exact path='/test' component={TestPage} />
+          <ProtectedRoute exact path='/dashboard' component={DashboardV1_1} />
+          <ProtectedRoute exact path='/profile' component={DetailedProfile} />
+          {/* <ProtectedRoute exact path='/test' component={TestPage} /> */}
           <ProtectedRoute
             exact
             path='/forgot-password'
@@ -57,7 +62,7 @@ function ProtectedRoute(props) {
     path === '/reset-password'
   ) {
     return currentUser ? (
-      <Redirect to={location.state?.from ?? '/profile'} />
+      <Redirect to={location.state?.from ?? '/dashboard'} />
     ) : (
       <Route {...props} />
     )
@@ -67,7 +72,7 @@ function ProtectedRoute(props) {
   ) : (
     <Redirect
       to={{
-        pathname: '/login',
+        pathname: '/dashboard',
         state: { from: path },
       }}
     />

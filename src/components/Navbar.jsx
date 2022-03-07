@@ -13,7 +13,6 @@ import Navlink from './Navlink'
 
 export function Navbar() {
   const { toggleColorMode } = useColorMode()
-  // const { logout, currentUser } = useAuth()
   const { logout, currentUser } = useAuth()
 
   return (
@@ -33,6 +32,7 @@ export function Navbar() {
         <Spacer />
         {!currentUser && <Navlink to='/login' name='Login' />}
         {!currentUser && <Navlink to='/register' name='Register' />}
+        {currentUser && <Navlink to='/dashboard' name='Dashboard' />}
         {currentUser && <Navlink to='/profile' name='Profile' />}
         {currentUser && (
           <Navlink

@@ -29,7 +29,7 @@ export default function ResetPasswordPage() {
 
   console.log(query.get('mode'), query.get('oobCode'))
   return (
-    <Layout>
+    <>
       <Heading textAlign='center' my={12}>
         Reset password
       </Heading>
@@ -74,6 +74,6 @@ export default function ResetPasswordPage() {
           </Stack>
         </chakra.form>
       </Card>
-    </Layout>
+    </>
   )
 }

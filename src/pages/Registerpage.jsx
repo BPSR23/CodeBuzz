@@ -34,10 +34,10 @@ export default function Registerpage() {
   }, [])
 
   return (
-    <Layout>
-      <Heading textAlign='center' my={12}>
+    <>
+      {/* <Heading textAlign='center' my={12}>
         Register
-      </Heading>
+      </Heading> */}
       <Card maxW='md' mx='auto' mt={4}>
         <chakra.form
           onSubmit={async e => {
@@ -123,6 +123,6 @@ export default function Registerpage() {
           Sign in with Google
         </Button>
       </Card>
-    </Layout>
+    </>
   )
 }

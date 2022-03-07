@@ -24,7 +24,7 @@ export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('')
 
   return (
-    <Layout>
+    <>
       <Heading textAlign='center' my={12}>
         Forgot password
       </Heading>
@@ -76,6 +76,6 @@ export default function ForgotPasswordPage() {
           </Button>
         </Center>
       </Card>
-    </Layout>
+    </>
   )
 }
