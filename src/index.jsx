@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import { ChakraProvider, ColorModeScript, extendTheme } from '@chakra-ui/react'
+import AppContextProvider from "./AppContext";
 
 const config = {
   initialColorMode: 'dark',
@@ -13,11 +14,13 @@ const theme = extendTheme({
 })
 
 ReactDOM.render(
+  <AppContextProvider>
   <React.StrictMode>
     <ChakraProvider>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <App />
     </ChakraProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
+  </AppContextProvider>,
   document.getElementById('root')
 )
