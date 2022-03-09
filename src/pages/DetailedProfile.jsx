@@ -16,12 +16,15 @@ import { useAppContext } from "../AppContext";
 import { getData } from "../getData";
 
 export default function Profile() {
-  const [user_name, setUserName] = useState("chiragbhatia");
-  const { setData } = useAppContext();
+  const [user_name, setUserName] = useState();
+  // const { setData } = useAppContext();
   const { data } = useAppContext();
-  const handleSearch = async () => {
+
+  const handleSearch = async (user_name) => {
     const response = await getData(user_name);
-    setData(response);
+    console.log("logged here", response);
+    // setData(response);
+    console.log("HELLO");
   };
 
   return (
@@ -65,7 +68,7 @@ export default function Profile() {
             />
           </FormControl>
           <Button
-            onClick={handleSearch}
+            onClick={handleSearch(user_name)}
             type="submit"
             colorScheme="pink"
             size="lg"
@@ -73,7 +76,6 @@ export default function Profile() {
           >
             Submit
           </Button>
-          console.log({data && data.total_problems_submitted})
         </Stack>
       </chakra.form>
     </Card>
