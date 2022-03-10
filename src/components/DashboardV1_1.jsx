@@ -1,13 +1,11 @@
 import React from "react";
 import {
   Container,
-  Flex,
   VStack,
   Heading,
   Center,
   Text,
   Box,
-  SimpleGrid,
   Tab,
   Tabs,
   TabPanels,
@@ -15,10 +13,7 @@ import {
   TabList,
 } from "@chakra-ui/react";
 import Graph from "./PieChart";
-import { Layout } from "../components/Layout";
-import { Router, Switch, Route } from "react-router-dom";
-import { DetailedProfile } from "../pages/DetailedProfile";
-import CalNivo from "../Graphs/CalendarNivo";
+
 import { useAppContext } from "../AppContext";
 import { BarChart } from "../Graphs/BarChart";
 const DashboardV1_1 = () => {
