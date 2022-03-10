@@ -23,9 +23,12 @@ import { useAppContext } from "../AppContext";
 
 const DashboardV1_1 = () => {
   const  {data}  = useAppContext();
-let response=null
+let leetcode_res=null
+let codeforces_res=null
 if(data){
-  response=data.data;
+  leetcode_res=data.leetcode;
+  codeforces_res=data.codeforces;
+  console.log("dsadasd",data)
 }
   return (
     <Container
@@ -75,17 +78,17 @@ if(data){
                     LeetCode
                   </Center>
                   <Text align="left" pl={5} pb={2} tetx="3xl" color="white">
-                    Status: {response && response.status}
+                    Status: {leetcode_res && leetcode_res.status}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
                    
-                    Ranking: {response && response.ranking}
+                    Ranking: {leetcode_res && leetcode_res.ranking}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
-                    Medium: {response && response.medium_questions_solved}
+                    Medium: {leetcode_res && leetcode_res.medium_questions_solved}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
-                    Easy: {response && response.easy_questions_solved}
+                    Easy: {leetcode_res && leetcode_res.easy_questions_solved}
                   </Text>
                 </Heading>
               </Box>
@@ -99,7 +102,7 @@ if(data){
                     CodeForces
                   </Center>
                   <Text align="left" pl={5} pb={2} color="white">
-                    Submissions :{" "}
+                    Submissions :{" "}{codeforces_res && codeforces_res.status}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
                     Tough:{" "}

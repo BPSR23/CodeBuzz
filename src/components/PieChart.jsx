@@ -9,7 +9,7 @@ const data = [
   { name: 'HackerRank', value: 5},
   { name: 'Group B', value: 6 },
   { name: 'Group C', value: 2 },
-  { name: 'Group D', value: 6 },
+  { name: 'Group D', value: 3 },
 ];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 

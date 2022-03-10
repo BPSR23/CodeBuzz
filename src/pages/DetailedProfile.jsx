@@ -13,24 +13,50 @@ import {
 } from "@chakra-ui/react";
 import { Card } from "../components/Card";
 import { useAppContext } from "../AppContext";
-import { getData } from "../getData";
+import { getLeetCodeData,getCodeForcesData } from "../getData";
 
 export default function Profile() {
   const [user_name, setUserName] = useState();
+  const [user_name_codeChef, setUser_name_codeChef] = useState();
+  const [leetcodeData, setLeetcodeData] = useState();
+  const [codeforces, setCodeforces] = useState();
+  
+
+  const [platform, setPlatform] = useState();
   const { setData } = useAppContext();
   const { data } = useAppContext();
+  
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    const leetcode_res=await fetchLeetCodeData();
+    const codeforces_res=await fetchCodeForcesData();
+    
+    let combinedData={leetcode:leetcode_res, codeforces:codeforces_res};
+    console.log(combinedData)
+     setData(combinedData)
+
+   
+  };
+  const fetchLeetCodeData=async()=>{
     try {
-      let profile="leetcode"
-      const response = await getData(profile,user_name);
-      setData(response);
+      const response = await getLeetCodeData(user_name);
+      // setData(response);
       return response.data;
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
+  const fetchCodeForcesData=async()=>{
+    try {
+      console.log("username",user_name_codeChef)
+      const response = await getCodeForcesData(user_name_codeChef);
+      // setData(response);
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <Card maxW="md" mx="auto" my={12}>
@@ -40,13 +66,16 @@ export default function Profile() {
             <FormLabel>LeetCode</FormLabel>
             <Input
               name="leetcode"
+              
               type="text"
               placeholder="Type LeetCode ID Here "
               onChange={(e) => {
                 setUserName(e.target.value);
               }}
               value={user_name}
+              
             />
+            
           </FormControl>
           <FormControl id="HackerRank" borderColor="gray.400">
             <FormLabel>HackerRank</FormLabel>
@@ -62,6 +91,10 @@ export default function Profile() {
               name="CodeChef"
               type="text"
               placeholder="Type CodeChef ID Here "
+              onChange={(e) => {
+                setUser_name_codeChef(e.target.value);
+              }}
+              value={user_name_codeChef}
             />
           </FormControl>
           <FormControl id="InterviewBit" borderColor="gray.400">

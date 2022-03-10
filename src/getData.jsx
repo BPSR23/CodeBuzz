@@ -1,7 +1,24 @@
 import axios from "axios";
 
-export const getData = async (platform,user_name) => {
-  const ENDPOINT = `https://competitive-coding-api.herokuapp.com/api/${platform}/${user_name}`;
+export const getLeetCodeData = async (user_name) => {
+  const ENDPOINT = `https://competitive-coding-api.herokuapp.com/api/leetcode/${user_name}`;
   return axios.get(ENDPOINT);
  
 };
+export const getCodeForcesData = async (user_name) => {
+  const ENDPOINT = `https://competitive-coding-api.herokuapp.com/api/interviewbit/${user_name}`;
+  return axios.get(ENDPOINT);
+ 
+};
+
+// export const getCodeChefData = async (user_name) => {
+//   const ENDPOINT = `https://competitive-coding-api.herokuapp.com/api/${platform}/${user_name}`;
+//   return axios.get(ENDPOINT);
+ 
+// };
+
+// export const getInterviewBitData = async (user_name) => {
+//   const ENDPOINT = `https://competitive-coding-api.herokuapp.com/api/${platform}/${user_name}`;
+//   return axios.get(ENDPOINT);
+ 
+// };
