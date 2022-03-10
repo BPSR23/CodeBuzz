@@ -17,7 +17,7 @@ import { getLeetCodeData,getCodeForcesData } from "../getData";
 
 export default function Profile() {
   const [user_name, setUserName] = useState();
-  const [user_name_codeChef, setUser_name_codeChef] = useState();
+  const [user_name_codeForces, setUser_name_codeForces] = useState();
   const [leetcodeData, setLeetcodeData] = useState();
   const [codeforces, setCodeforces] = useState();
   
@@ -49,8 +49,8 @@ export default function Profile() {
   }
   const fetchCodeForcesData=async()=>{
     try {
-      console.log("username",user_name_codeChef)
-      const response = await getCodeForcesData(user_name_codeChef);
+      console.log("username",user_name_codeForces);
+      const response = await getCodeForcesData(user_name_codeForces);
       // setData(response);
       return response.data;
     } catch (error) {
@@ -85,16 +85,16 @@ export default function Profile() {
               placeholder="Type HackerRank ID Here "
             />
           </FormControl>
-          <FormControl id="CodeChef" borderColor="gray.400">
-            <FormLabel>CodeChef</FormLabel>
+          <FormControl id="CodeForces" borderColor="gray.400">
+            <FormLabel>CodeForces</FormLabel>
             <Input
-              name="CodeChef"
+              name="CodeForces"
               type="text"
-              placeholder="Type CodeChef ID Here "
+              placeholder="Type CodeForces ID Here "
               onChange={(e) => {
-                setUser_name_codeChef(e.target.value);
+                setUser_name_codeForces(e.target.value);
               }}
-              value={user_name_codeChef}
+              value={user_name_codeForces}
             />
           </FormControl>
           <FormControl id="InterviewBit" borderColor="gray.400">

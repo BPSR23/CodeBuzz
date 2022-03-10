@@ -20,16 +20,15 @@ import { Router, Switch, Route } from "react-router-dom";
 import { DetailedProfile } from "../pages/DetailedProfile";
 import CalNivo from "../Graphs/CalendarNivo";
 import { useAppContext } from "../AppContext";
-
+import { BarChart } from "../Graphs/BarChart";
 const DashboardV1_1 = () => {
-  const  {data}  = useAppContext();
-let leetcode_res=null
-let codeforces_res=null
-if(data){
-  leetcode_res=data.leetcode;
-  codeforces_res=data.codeforces;
-  console.log("dsadasd",data)
-}
+  const { data } = useAppContext();
+  let leetcode_res = null;
+  let codeforces_res = null;
+  if (data) {
+    leetcode_res = data.leetcode;
+    codeforces_res = data.codeforces;
+  }
   return (
     <Container
       maxW="container.xl"
@@ -81,18 +80,19 @@ if(data){
                     Status: {leetcode_res && leetcode_res.status}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
-                   
                     Ranking: {leetcode_res && leetcode_res.ranking}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
-                    Medium: {leetcode_res && leetcode_res.medium_questions_solved}
+                    Medium:{" "}
+                    {leetcode_res && leetcode_res.medium_questions_solved}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
                     Easy: {leetcode_res && leetcode_res.easy_questions_solved}
                   </Text>
                 </Heading>
               </Box>
-              <Graph py={-20} />
+              {/* <Graph py={-20} /> */}
+              <BarChart mt={10} />
             </TabPanel>
             <TabPanel>
               {/* Card 2 - CodeForces */}
@@ -102,7 +102,7 @@ if(data){
                     CodeForces
                   </Center>
                   <Text align="left" pl={5} pb={2} color="white">
-                    Submissions :{" "}{codeforces_res && codeforces_res.status}
+                    Submissions : {codeforces_res && codeforces_res.status}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
                     Tough:{" "}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as ReachLink } from "@reach/router"
+import { Link as ReachLink } from "@reach/router";
 import {
   Container,
   Flex,
@@ -15,20 +15,16 @@ import Graph from "./PieChart";
 import { Profile } from "../pages/DetailedProfile";
 import { useAppContext } from "../AppContext";
 
-const DashboardV1 = () =>{
-  const  {data}  = useAppContext();
-  let response=null;
-  if(data){
-    response=data.data;
+const DashboardV1 = () => {
+  const { data } = useAppContext();
+  let leetcode_res = null;
+  let codeforces_res = null;
+  if (data) {
+    leetcode_res = data.leetcode;
+    codeforces_res = data.codeforces;
   }
   return (
-    <Container
-      maxW="container.xl"
-      width="150vh"
-      pt={10}
-      pr={0}
-      pl={0}
-    >
+    <Container maxW="container.xl" width="150vh" pt={10} pr={0} pl={0}>
       <Flex h="100vh" py={10}>
         <VStack
           borderLeftRadius="20"
@@ -54,26 +50,29 @@ const DashboardV1 = () =>{
           <SimpleGrid columns={2} spacing={2}>
             <Box borderRadius="5" bg="#0088FE" h={160} w="30vh">
               <Heading as="h3" color="white" py={3} size="sm" w="full">
-                <Center pb={3} color="white" >
-                  <Link href="/dashboardv1_1">
-                    LeetCode
-                  </Link>
+                <Center pb={3} color="white">
+                  <Link href="/dashboardv1_1">LeetCode</Link>
                 </Center>
                 <Text pl={2} pb={2} color="white">
-                  Submissions :{response && response.total_problems_submitted}
+                  Submissions :
+                  {leetcode_res &&
+                    leetcode_res.total_problems_submitted}
                 </Text>
                 <Text pl={2} pb={2} color="white">
-                  Tough:{response && response.hard_problems_submitted}
+                  Tough: {leetcode_res &&
+                    leetcode_res.hard_problems_submitted}
                 </Text>
                 <Text pl={2} pb={2} color="white">
-                  Medium:{" "}
+                  Medium: {leetcode_res &&
+                    leetcode_res.medium_problems_submitted}
                 </Text>
                 <Text pl={2} pb={2} color="white">
-                  Easy:{" "}
+                  Easy: {leetcode_res &&
+                    leetcode_res.easy_problems_submitted}
                 </Text>
               </Heading>
             </Box>
-            <Box borderRadius="5" bg="#FFBB28" h={160} w="30vh" >
+            <Box borderRadius="5" bg="#FFBB28" h={160} w="30vh">
               <Heading as="h3" color="white" py={3} size="sm" w="full">
                 <Center pb={3} color="white">
                   CodeForces

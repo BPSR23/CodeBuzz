@@ -1,24 +1,39 @@
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { useAppContext } from "../AppContext";
 
-const Val = {
-  "total_problems_submitted": "23",
-}
-console.log({Val})
-const data = [
-  { name: 'HackerRank', value: 5},
-  { name: 'Group B', value: 6 },
-  { name: 'Group C', value: 2 },
-  { name: 'Group D', value: 3 },
+
+
+export default function Graph () {
+  let leetcode_res=null
+  let codeforces_res=null
+  
+  const  {data}  = useAppContext();
+  if(data){
+    leetcode_res=data.leetcode;
+    codeforces_res=data.codeforces;
+    console.log("dsadasd",data.leetcode)
+   }
+   console.log(data)
+  
+const var1 = leetcode_res && leetcode_res.total_problems_submitted
+const var2 = leetcode_res && leetcode_res.easy_problems_submitted
+const var3 = codeforces_res && codeforces_res.medium_problems_submitted
+const var4 = leetcode_res && leetcode_res.status
+console.log(var1, var2, var3, var4)
+
+const data1 = [
+  { name: 'HackerRank', value: parseInt(var1) },
+  { name: 'Group B', value: parseInt(var2) },
+  { name: 'Group C', value: 0 },
+  { name: 'Group D', value: 0 },
 ];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-export default class Graph extends PureComponent {
-  render() {
     return (
-      <PieChart width={400} height={300} onMouseEnter={this.onPieEnter}>
+      <PieChart width={400} height={300} >
         <Pie
-          data={data}
+          data={data1}
           cx={200}
           innerRadius={70}
           outerRadius={90}
@@ -26,7 +41,7 @@ export default class Graph extends PureComponent {
           paddingAngle={5}
           dataKey="value"
         >
-          {data.map((entry, index) => (
+          {data1.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
@@ -34,5 +49,5 @@ export default class Graph extends PureComponent {
       </PieChart>
       
     );
-  }
 }
+

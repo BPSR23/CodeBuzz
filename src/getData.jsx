@@ -6,7 +6,7 @@ export const getLeetCodeData = async (user_name) => {
  
 };
 export const getCodeForcesData = async (user_name) => {
-  const ENDPOINT = `https://competitive-coding-api.herokuapp.com/api/interviewbit/${user_name}`;
+  const ENDPOINT = `https://competitive-coding-api.herokuapp.com/api/codeforces/${user_name}`;
   return axios.get(ENDPOINT);
  
 };

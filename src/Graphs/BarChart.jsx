@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-
+import { useAppContext } from "../AppContext";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -19,7 +19,18 @@ ChartJS.register(
   Tooltip
 );
 
-export default function App() {
+export function BarChart() {
+  const  {data}  = useAppContext();
+  let leetcode_res=null
+  let codeforces_res=null
+  if(data){
+    leetcode_res=data.leetcode;
+    codeforces_res=data.codeforces;
+    console.log("dsadasd",data)
+  }
+
+  const arr = [leetcode_res && leetcode_res.easy_problems_submitted, leetcode_res && leetcode_res.medium_problems_submitted, leetcode_res && leetcode_res.hard_problems_submitted]
+    
   const [chartData, setChartData] = useState({
     datasets: [],
   });
@@ -28,13 +39,14 @@ export default function App() {
 
   useEffect(() => {
     setChartData({
-      labels: ["Hackerrank", "Leetcode", "CodeChef", "InterviewBit"],
+      labels: ["Easy", "Medium", "Hard"],
       datasets: [
         {
           label: "Submissions",
-          data: [120, 250, 12, 89],
+
+          data: arr,
           borderColor: "rgb(53,162,235)",
-          backgroundColor: "rgba(53,162,235,0.4)",
+          backgroundColor: "rgba(0,136,254,0.6)",
         },
       ],
     });
@@ -42,7 +54,7 @@ export default function App() {
       responsive: true,
       plugins: {
         legend: {
-          position: "top",
+          position: "bottom",
         },
         title: {
           display: true,
