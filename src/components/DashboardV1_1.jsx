@@ -22,7 +22,11 @@ import CalNivo from "../Graphs/CalendarNivo";
 import { useAppContext } from "../AppContext";
 
 const DashboardV1_1 = () => {
-  const { data } = useAppContext();
+  const  {data}  = useAppContext();
+let response=null
+if(data){
+  response=data.data;
+}
   return (
     <Container
       maxW="container.xl"
@@ -71,16 +75,17 @@ const DashboardV1_1 = () => {
                     LeetCode
                   </Center>
                   <Text align="left" pl={5} pb={2} tetx="3xl" color="white">
-                    Status : <h1>{data && data.status}</h1>
+                    Status: {response && response.status}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
-                    Ranking:{data && data.ranking}
+                   
+                    Ranking: {response && response.ranking}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
-                    Medium:{" "}
+                    Medium: {response && response.medium_questions_solved}
                   </Text>
                   <Text align="left" pl={5} pb={2} color="white">
-                    Easy:{" "}
+                    Easy: {response && response.easy_questions_solved}
                   </Text>
                 </Heading>
               </Box>

@@ -17,14 +17,19 @@ import { getData } from "../getData";
 
 export default function Profile() {
   const [user_name, setUserName] = useState();
-  // const { setData } = useAppContext();
+  const { setData } = useAppContext();
   const { data } = useAppContext();
 
-  const handleSearch = async (user_name) => {
-    const response = await getData(user_name);
-    console.log("logged here", response);
-    // setData(response);
-    console.log("HELLO");
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    try {
+      let profile="leetcode"
+      const response = await getData(profile,user_name);
+      setData(response);
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -68,7 +73,7 @@ export default function Profile() {
             />
           </FormControl>
           <Button
-            onClick={handleSearch(user_name)}
+            onClick={handleSearch}
             type="submit"
             colorScheme="pink"
             size="lg"

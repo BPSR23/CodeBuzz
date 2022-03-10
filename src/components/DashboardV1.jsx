@@ -13,8 +13,14 @@ import {
 } from "@chakra-ui/react";
 import Graph from "./PieChart";
 import { Profile } from "../pages/DetailedProfile";
+import { useAppContext } from "../AppContext";
 
 const DashboardV1 = () =>{
+  const  {data}  = useAppContext();
+  let response=null;
+  if(data){
+    response=data.data;
+  }
   return (
     <Container
       maxW="container.xl"
@@ -54,10 +60,10 @@ const DashboardV1 = () =>{
                   </Link>
                 </Center>
                 <Text pl={2} pb={2} color="white">
-                  Submissions :{" "}
+                  Submissions :{response && response.total_problems_submitted}
                 </Text>
                 <Text pl={2} pb={2} color="white">
-                  Tough:{" "}
+                  Tough:{response && response.hard_problems_submitted}
                 </Text>
                 <Text pl={2} pb={2} color="white">
                   Medium:{" "}
