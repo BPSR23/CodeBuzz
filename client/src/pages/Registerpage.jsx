@@ -70,7 +70,7 @@ class Register extends Component {
         {/* <Heading textAlign='center' my={12}>
         Register
       </Heading> */}
-        <Card maxW="md" mx="auto" mt={4}>
+        <Card maxW="md" mx="auto" mt={20}>
           <chakra.form noValidate onSubmit={this.onSubmit}>
             <Stack spacing="6">
               <FormControl id="name">
@@ -115,20 +115,7 @@ class Register extends Component {
                 />
                 <span className="red-text">{errors.password}</span>
               </FormControl>
-              <FormControl id="password">
-                <FormLabel>Password</FormLabel>
-                <Input
-                  onChange={this.onChange}
-                  value={this.state.password2}
-                  error={errors.password2}
-                  id="password2"
-                  type="password"
-                  className={classnames("", {
-                    invalid: errors.password2,
-                  })}
-                />
-                <span className="red-text">{errors.password2}</span>
-              </FormControl>
+
               <FormControl id="userid">
                 <FormLabel>Uer ID</FormLabel>
                 <Input

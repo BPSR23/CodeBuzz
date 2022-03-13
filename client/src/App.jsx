@@ -12,7 +12,7 @@ import Landing from "./components/DashboardV1";
 import Register from "./pages/Registerpage";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import DashboardV1_1 from "./components/DashboardV1_1";
-// import DashboardV1_1 from "./components/DashboardV1_1";
+import DashboardV1 from "./components/DashboardV1";
 // import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 // import Homepage from "../pages/Homepage";
 // import Loginpage from "../pages/Loginpage";
@@ -50,7 +50,7 @@ export default function App() {
       <Router>
         <div className="App">
           <Navbar />
-          <Route exact path="/dashboard" component={DashboardV1_1} />
+          <Route exact path="/dashboard" component={DashboardV1} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Switch>
@@ -59,7 +59,7 @@ export default function App() {
           {/* <Route exact path="/" component={Homepage} /> */}
           {/* < Route exact path="/login" component={Loginpage} /> */}
           {/* < Route exact path="/register" component={Registerpage} /> */}
-          <Route exact path="/dashboard" component={DashboardV1_1} />
+          {/* <Route exact path="/dashboard" component={DashboardV1_1} /> */}
           <Route exact path="/profile" component={DetailedProfile} />
           {/* < Route exact path='/test' component={TestPage} /> */}
           {/* < Route

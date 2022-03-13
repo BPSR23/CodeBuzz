@@ -27,11 +27,11 @@ export function Navbar() {
         mx="auto"
         spacing={4}
       >
-        <Navlink to="/" name="CCC" size="lg" />
+        <Navlink to="/dashboardV1" name="CCC" size="lg" />
         <Spacer />
         <Navlink to="/login" name="Login" />
         <Navlink to="/register" name="Register" />
-        <Navlink to="/dashboard" name="Dashboard" />
+        <Navlink to="/dashboardV1_1" name="Dashboard" />
         <Navlink to="/profile" name="Profile" />(
         {/* <Navlink
           to="/logout"
