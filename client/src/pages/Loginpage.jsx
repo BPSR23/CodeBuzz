@@ -112,7 +112,7 @@ class Login extends Component {
           </chakra.form>
           <HStack justifyContent="space-between" my={4}>
             <Button variant="link">
-              <Link to="/Registerpage">Register</Link>
+              <Link to="/Register">Register</Link>
             </Button>
           </HStack>
         </Card>
