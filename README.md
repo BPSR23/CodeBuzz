@@ -1,8 +1,8 @@
-# ccc_mini_project
+# mini_project
 
 # Project Title
 
-CCC Mini Project
+ Mini Project
 
 # Description
 
